@@ -1,0 +1,757 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\title{Business Forecationg Project}
+\author{Laabidi Nadine}
+\date{09/01/2023}
+
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Business Forecationg Project},
+  pdfauthor={Laabidi Nadine},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\begin{document}
+\maketitle
+
+\hypertarget{goal}{%
+\subsection{Goal}\label{goal}}
+
+The goal of this project is to build an ARIMA model, with which we can
+forecast the retail price of Diesel using the series past values.
+
+\hypertarget{the-packages-used}{%
+\subsection{The packages used}\label{the-packages-used}}
+
+\begin{itemize}
+\item
+  TSA: time series analysis, we couldn't upload it so we uploaded the R
+  code of the functions as a source.
+\item
+  TSstudio: this package provides a set of tools descriptive and
+  predictive analysis of time series data. we used from it the function
+  ts\_split in order to split the data into train and test set
+\item
+  forecast: it provides you with Methods and tools for displaying and
+  analysing univariate time series forecasts including exponen-tial
+  smoothing via state space models and automatic ARIMA modelling. we
+  used from it the boxcox.lambda, the acf, the pacf and the accruracy
+  functions to measure the accuracy of our forecast.
+\item
+  tseries: Time series analysis and computational finance, we used it
+  for the adf test
+\end{itemize}
+
+\hypertarget{dataset-overview}{%
+\subsection{Dataset Overview}\label{dataset-overview}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list=}\FunctionTok{ls}\NormalTok{())}
+\NormalTok{data}\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(}\StringTok{"project.csv"}\NormalTok{,  }\AttributeTok{sep=}\StringTok{","}\NormalTok{, }\AttributeTok{dec=}\StringTok{"."}\NormalTok{ , }\AttributeTok{header=}\NormalTok{T)}
+\FunctionTok{summary}\NormalTok{(data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      Date           U.S..No.2.Diesel.Retail.Prices..Dollars.per.Gallon.
+##  Length:313         Min.   :0.959                                      
+##  Class :character   1st Qu.:1.348                                      
+##  Mode  :character   Median :2.467                                      
+##                     Mean   :2.370                                      
+##                     3rd Qu.:3.069                                      
+##                     Max.   :4.703
+\end{verbatim}
+
+the source of our dataset is the \textbf{U.S. Energy Information
+Administration (EIA)} which is a principal agency of the U.S. Federal
+Statistical System responsible for collecting, analyzing, and
+disseminating energy information to promote sound policymaking,
+efficient markets, and public understanding of energy and its
+interaction with the economy and the environment.
+
+The dataset we are working on presents \textbf{the US Diesel retail
+prices} from \textbf{May 1994 until May 2020} we have 313 observations
+lying between \emph{0.959 and 4.703}
+
+\hypertarget{arima-model-selection}{%
+\subsection{ARIMA model selection}\label{arima-model-selection}}
+
+\hypertarget{converting-the-dataset-into-a-time-series}{%
+\subsubsection{converting the dataset into a time
+series}\label{converting-the-dataset-into-a-time-series}}
+
+we use the function ts() to convert the original dataset into a time
+series. the frequency is equal to 12 because it's a monthly dataset
+starting from May 1994
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data}\OtherTok{=}\NormalTok{data[,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\NormalTok{project  }\OtherTok{\textless{}{-}} \FunctionTok{ts}\NormalTok{(data, }\AttributeTok{frequency=}\DecValTok{12}\NormalTok{, }\AttributeTok{start=}\FunctionTok{c}\NormalTok{(}\DecValTok{1994}\NormalTok{,}\DecValTok{5}\NormalTok{))}
+\NormalTok{project}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+## 1994                         1.100 1.103 1.110 1.123 1.125 1.122 1.131 1.113
+## 1995 1.098 1.088 1.088 1.104 1.126 1.120 1.100 1.105 1.119 1.115 1.120 1.130
+## 1996 1.145 1.145 1.183 1.275 1.273 1.201 1.176 1.201 1.265 1.323 1.323 1.309
+## 1997 1.291 1.280 1.229 1.212 1.196 1.173 1.151 1.165 1.160 1.183 1.192 1.166
+## 1998 1.120 1.084 1.063 1.067 1.069 1.041 1.029 1.007 1.024 1.039 1.022 0.973
+## 1999 0.967 0.959 0.997 1.079 1.073 1.074 1.122 1.172 1.215 1.228 1.263 1.292
+## 2000 1.356 1.461 1.479 1.422 1.420 1.421 1.434 1.466 1.637 1.637 1.621 1.565
+## 2001 1.524 1.492 1.399 1.422 1.496 1.482 1.375 1.390 1.495 1.348 1.259 1.167
+## 2002 1.153 1.152 1.230 1.309 1.305 1.286 1.299 1.328 1.411 1.462 1.420 1.429
+## 2003 1.488 1.654 1.708 1.533 1.451 1.424 1.435 1.487 1.467 1.481 1.482 1.490
+## 2004 1.551 1.582 1.629 1.692 1.746 1.711 1.739 1.833 1.917 2.134 2.147 2.009
+## 2005 1.959 2.027 2.214 2.292 2.199 2.290 2.373 2.500 2.819 3.095 2.573 2.443
+## 2006 2.467 2.475 2.559 2.728 2.897 2.898 2.934 3.045 2.783 2.519 2.545 2.610
+## 2007 2.485 2.488 2.667 2.834 2.796 2.808 2.868 2.869 2.953 3.075 3.396 3.341
+## 2008 3.308 3.377 3.881 4.084 4.425 4.677 4.703 4.302 4.024 3.576 2.876 2.449
+## 2009 2.292 2.195 2.092 2.220 2.227 2.529 2.540 2.634 2.626 2.672 2.792 2.745
+## 2010 2.845 2.785 2.915 3.059 3.069 2.948 2.911 2.959 2.946 3.052 3.140 3.243
+## 2011 3.388 3.584 3.905 4.064 4.047 3.933 3.905 3.860 3.837 3.798 3.962 3.861
+## 2012 3.833 3.953 4.127 4.115 3.979 3.759 3.721 3.983 4.120 4.094 4.000 3.961
+## 2013 3.909 4.111 4.068 3.930 3.870 3.849 3.866 3.905 3.961 3.885 3.839 3.882
+## 2014 3.893 3.984 4.001 3.964 3.943 3.906 3.884 3.838 3.792 3.681 3.647 3.411
+## 2015 2.997 2.858 2.897 2.782 2.888 2.873 2.788 2.595 2.505 2.519 2.467 2.310
+## 2016 2.143 1.998 2.090 2.152 2.315 2.423 2.405 2.351 2.394 2.454 2.439 2.510
+## 2017 2.580 2.568 2.554 2.583 2.560 2.511 2.496 2.595 2.785 2.794 2.909 2.909
+## 2018 3.018 3.046 2.988 3.096 3.244 3.253 3.233 3.218 3.262 3.365 3.300 3.123
+## 2019 2.980 2.997 3.076 3.121 3.161 3.089 3.045 3.005 3.016 3.053 3.069 3.055
+## 2020 3.048 2.910 2.729 2.493 2.392
+\end{verbatim}
+
+\hypertarget{splitting-the-dataset-into-training-set-and-testing-set}{%
+\subsubsection{splitting the dataset into training set and testing
+set}\label{splitting-the-dataset-into-training-set-and-testing-set}}
+
+the function \emph{ts\_split} is used to Split a Time Series Object into
+Training and Testing Partitions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{ (TSstudio)}
+\NormalTok{split\_project }\OtherTok{\textless{}{-}} \FunctionTok{ts\_split}\NormalTok{(}\AttributeTok{ts.obj =}\NormalTok{ project, }\AttributeTok{sample.out =} \DecValTok{63}\NormalTok{)}
+\NormalTok{training }\OtherTok{\textless{}{-}}\NormalTok{ split\_project}\SpecialCharTok{$}\NormalTok{train}
+\NormalTok{testing }\OtherTok{\textless{}{-}}\NormalTok{ split\_project}\SpecialCharTok{$}\NormalTok{test}
+\FunctionTok{length}\NormalTok{(training)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 250
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{length}\NormalTok{(testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 63
+\end{verbatim}
+
+The training set incorporates 250 observations equivalent to 80\% of the
+total observation while the testing set includes 63 observations
+equivalent to 20\% of the total observations.
+
+\hypertarget{plotting-the-data}{%
+\paragraph{plotting the data}\label{plotting-the-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(training,}\AttributeTok{ylab=}\StringTok{"us diesel retail price "}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"date"}\NormalTok{,  }\AttributeTok{col=} \StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{, }\AttributeTok{type=}\StringTok{"l"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{ (training}\SpecialCharTok{\textasciitilde{}} \FunctionTok{cycle}\NormalTok{(training), }\AttributeTok{xlab=}\StringTok{"month"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Diesel price"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+At a first glance we can see that the data exhibits an upward trend with
+the presence of an outlier at year 2008.
+
+the following boxplot shows that the mean is not constant over time thus
+it's a clear evidence that the series is \textbf{non-stationary}.
+
+\hypertarget{computing-lambda-for-transformation}{%
+\subsubsection{computing lambda for
+transformation}\label{computing-lambda-for-transformation}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(forecast)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Registered S3 method overwritten by 'quantmod':
+##   method            from
+##   as.zoo.data.frame zoo
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{BoxCox.lambda}\NormalTok{(training,  }\AttributeTok{lower =} \SpecialCharTok{{-}}\DecValTok{2}\NormalTok{, }\AttributeTok{upper =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.6716669
+\end{verbatim}
+
+lambda is close to -0.5, in this case we ought to use the inverse square
+but it is hard to rescale it when making the forecast so there will be
+no transformation.
+
+\textbf{NB:} the BoxCox.ar function didn't work for us so we used the
+BoxCox.lambda function which takes the time series of class ts as an
+input and gives a number indicating the Box-Cox transformation parameter
+,which is lambda , as an output.
+
+\hypertarget{plotting-the-acf-the-pacf}{%
+\subsubsection{plotting the ACF, the
+PACF}\label{plotting-the-acf-the-pacf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{acf}\NormalTok{(training, }\AttributeTok{lag=}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pacf}\NormalTok{(training, }\AttributeTok{lag=}\DecValTok{50}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-6-2.pdf}
+
+The autocorrelation function plot shows a very slow decay which is
+typical of a nonstationary time series, meaning that the mean and the
+varinace depend on time.
+
+the PACF drops off to zero for lags \textgreater0 but it is irrelevent
+since the ACF plot is showing a non-stationary time series.
+
+let's confirm that !
+
+\hypertarget{stationarity-test}{%
+\subsubsection{stationarity test}\label{stationarity-test}}
+
+To check for stationarity, we do the \textbf{Augmented Dickey Fuller
+test (ADF Test)}
+
+H0: the series is non-stationary\\
+H1: the series is stationary
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tseries)}
+\FunctionTok{adf.test}\NormalTok{(training , }\AttributeTok{alternative=}\FunctionTok{c}\NormalTok{(}\StringTok{"stationary"}\NormalTok{, }\StringTok{"explosive"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  training
+## Dickey-Fuller = -3.2302, Lag order = 6, p-value = 0.08332
+## alternative hypothesis: stationary
+\end{verbatim}
+
+the p-value is greater than 5\% so we fail to reject H0\\
+the series is non-stationary and we need to make the first difference
+
+\hypertarget{st-difference-stationarity-test}{%
+\subsubsection{1st difference stationarity
+test}\label{st-difference-stationarity-test}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tseries)}
+\NormalTok{diff\_training}\OtherTok{\textless{}{-}} \FunctionTok{diff}\NormalTok{(training)}
+\FunctionTok{adf.test}\NormalTok{(diff\_training, }\AttributeTok{alternative=}\FunctionTok{c}\NormalTok{(}\StringTok{"stationary"}\NormalTok{, }\StringTok{"explosive"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in adf.test(diff_training, alternative = c("stationary", "explosive")):
+## p-value smaller than printed p-value
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Augmented Dickey-Fuller Test
+## 
+## data:  diff_training
+## Dickey-Fuller = -5.9636, Lag order = 6, p-value = 0.01
+## alternative hypothesis: stationary
+\end{verbatim}
+
+the p-value is less than 5\% so we reject H0 we have a stationary time
+series, now let's examinate the plots !
+
+\hypertarget{plotting-the-series-after-the-first-difference}{%
+\subsubsection{plotting the series after the first
+difference}\label{plotting-the-series-after-the-first-difference}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(diff\_training,}\AttributeTok{ylab=}\StringTok{"us diesel retail price "}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"date"}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{type=}\StringTok{"o"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+As we can see making the first difference helped us stabilise the mean
+of our time series and thus reduced the trend although we still have
+some outliers.
+
+\hypertarget{plotting-the-acf-pacf-and-eacf-of-the-differenced-dataset}{%
+\subsubsection{plotting the ACF, PACF and EACF of the differenced
+dataset}\label{plotting-the-acf-pacf-and-eacf-of-the-differenced-dataset}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"eacf.R"}\NormalTok{)}
+\FunctionTok{acf}\NormalTok{(diff\_training, }\AttributeTok{lag=}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-10-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{pacf}\NormalTok{(diff\_training, }\AttributeTok{lag=}\DecValTok{30}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-10-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{eacf}\NormalTok{(diff\_training)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## AR/MA
+##   0 1 2 3 4 5 6 7 8 9 10 11 12 13
+## 0 x x o o o o o x x o o  o  o  o 
+## 1 x o o o x o o x x o o  o  o  o 
+## 2 x o o o x o o x o o o  x  o  o 
+## 3 o o o x x o o x o o o  o  o  o 
+## 4 o x x o o o o x o o x  o  o  o 
+## 5 x x x o o o o x o o x  o  o  x 
+## 6 x o x o x o o x o o o  o  o  o 
+## 7 x x x x x x x x o o o  o  o  o
+\end{verbatim}
+
+accrording to the ACF plot, the process is significant at lag=0
+
+according to the PACF plot, we have two possible values of p which are 0
+and 1
+
+Thus the ACF and PACF give us two candidate models which are
+ARIMA(1,1,0) and ARIMA(0,1,0)
+
+now for the \textbf{EACF} we look for the corners formed by the x's from
+the bottom right side moving towards the top left. In our case, it
+indicates the possibility of an ARIMA (1,1,1)
+
+all in all, we have THREE candidate models and we need now to make the
+estimation to be able to choose the final one.
+
+\hypertarget{making-the-estimation-choosing-the-appropriate-model}{%
+\subsubsection{Making the estimation \& choosing the appropriate
+model}\label{making-the-estimation-choosing-the-appropriate-model}}
+
+we are going to use the likelyhood method as it's the most commonly used
+technique, Nonetheless there are other methods like the method of
+moments and the least square estimation we can also use to estimate.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Testing the ARIMA (0,1,0) model
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"arima.R"}\NormalTok{)}
+\FunctionTok{arima}\NormalTok{(training,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{) ,}\AttributeTok{method=}\StringTok{\textquotesingle{}ML\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## arima(x = training, order = c(0, 1, 0), method = "ML")
+## 
+## 
+## sigma^2 estimated as 0.01631:  log likelihood = 159.13,  aic = -318.26
+\end{verbatim}
+
+The white noise process suggests that the fitted model is
+
+Y(t)-Y(t-1)= e(t)
+
+The white noise variance estimate is equal to 0.01626 and the aic is
+equal to -318.26
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Testing the ARIMA (1,1,0) model
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"arima.R"}\NormalTok{) }
+\FunctionTok{arima}\NormalTok{(training,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{) ,}\AttributeTok{method=}\StringTok{\textquotesingle{}ML\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## arima(x = training, order = c(1, 1, 0), method = "ML")
+## 
+## Coefficients:
+##          ar1
+##       0.4900
+## s.e.  0.0551
+## 
+## sigma^2 estimated as 0.01238:  log likelihood = 193.31,  aic = -384.61
+\end{verbatim}
+
+The ARIMA(1,1,0) suggests that the fitted model is
+
+Y(t)-Y(t-1)=0.4900Y(t-1)+e(t)
+
+the ML phi estimate is equal to 0.4900 which is significantly different
+from zero
+
+The white noise variance estimate is equal to 0.01238 and the aic is
+equal to -384.61
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\begin{itemize}
+\tightlist
+\item
+  Testing the ARIMA (1,1,1) model
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"arima.R"}\NormalTok{) }
+\FunctionTok{arima}\NormalTok{(training,}\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{method=}\StringTok{\textquotesingle{}ML\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## arima(x = training, order = c(1, 1, 1), method = "ML")
+## 
+## Coefficients:
+##          ar1     ma1
+##       0.3338  0.2064
+## s.e.  0.1147  0.1179
+## 
+## sigma^2 estimated as 0.01225:  log likelihood = 194.6,  aic = -385.2
+\end{verbatim}
+
+The ARIMA(1,1,0) suggests that the fitted model is
+
+Y(t)-Y(t-1)= 0.3338Y(t-1)+ 0.2064(e(t-1))+e(t)
+
+the ML phi estimate is equal to 0.3338 and teta is equal to -0.2064
+which are different from zero.
+
+The white noise variance estimate is equal to 0.01225 and the aic is
+equal to -385.2
+
+\textbf{THE SELECTED MODEL WILL BE ARIMA(1,1,1)} it has the smallest aic
+and significant estimators
+
+\hypertarget{forecasting}{%
+\subsection{Forecasting}\label{forecasting}}
+
+Now we will use the predict function to display the predictions for the
+last 20\% of our dataset and compare it with the actual data (testing
+set)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{testing}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        Jan   Feb   Mar   Apr   May   Jun   Jul   Aug   Sep   Oct   Nov   Dec
+## 2015             2.897 2.782 2.888 2.873 2.788 2.595 2.505 2.519 2.467 2.310
+## 2016 2.143 1.998 2.090 2.152 2.315 2.423 2.405 2.351 2.394 2.454 2.439 2.510
+## 2017 2.580 2.568 2.554 2.583 2.560 2.511 2.496 2.595 2.785 2.794 2.909 2.909
+## 2018 3.018 3.046 2.988 3.096 3.244 3.253 3.233 3.218 3.262 3.365 3.300 3.123
+## 2019 2.980 2.997 3.076 3.121 3.161 3.089 3.045 3.005 3.016 3.053 3.069 3.055
+## 2020 3.048 2.910 2.729 2.493 2.392
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{ (testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.998
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{ (testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.365
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"predict.TAR.R"}\NormalTok{)}
+\NormalTok{model}\OtherTok{=}\FunctionTok{arima}\NormalTok{(training, }\AttributeTok{order=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{), }\AttributeTok{method=}\StringTok{\textquotesingle{}ML\textquotesingle{}}\NormalTok{)}
+\NormalTok{predict\_testing}\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(model, }\AttributeTok{n.ahead=}\DecValTok{63}\NormalTok{)}
+\FunctionTok{round}\NormalTok{ (predict\_testing}\SpecialCharTok{$}\NormalTok{pred,}\DecValTok{4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         Jan    Feb    Mar    Apr    May    Jun    Jul    Aug    Sep    Oct
+## 2015               2.8237 2.8122 2.8084 2.8071 2.8067 2.8066 2.8065 2.8065
+## 2016 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065
+## 2017 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065
+## 2018 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065
+## 2019 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065 2.8065
+## 2020 2.8065 2.8065 2.8065 2.8065 2.8065                                   
+##         Nov    Dec
+## 2015 2.8065 2.8065
+## 2016 2.8065 2.8065
+## 2017 2.8065 2.8065
+## 2018 2.8065 2.8065
+## 2019 2.8065 2.8065
+## 2020
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(predict\_testing}\SpecialCharTok{$}\NormalTok{pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.806508
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(predict\_testing}\SpecialCharTok{$}\NormalTok{pred)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.823697
+\end{verbatim}
+
+the actual data are within an interval from 1.998 to 3.365 while the
+predicted data fell within an interval from 2.806508 to 2.823697
+
+now let's check the plot of our series, forecast,limits and actual
+values!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{ (}\StringTok{"plot.Arima.R"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(model, }\AttributeTok{n.ahead=}\DecValTok{63}\NormalTok{, }\AttributeTok{ylab=} \StringTok{\textquotesingle{}US diesel retail price\textquotesingle{}}\NormalTok{, }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{type=}\StringTok{"b"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(testing, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{type=}\StringTok{"b"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{project_files/figure-latex/unnamed-chunk-16-1.pdf}
+
+\begin{itemize}
+\item
+  the red area presents 95\% forecast limits
+\item
+  the blue graph presents the actual values of the series
+\item
+  the black line is the forecast. it has this shape because as shown in
+  the table of the predicted values above they are close to each other
+  in the values. it is also the same for the actual values
+\end{itemize}
+
+As we can see the actual values fell within the forecast limits.
+
+The forecast for the fisrt predicted months was perfect because it's a
+short term forecast it is normal that the accuracy would be higher
+nontheless it was also good for the rest of the predicted period
+
+\hypertarget{forecast-accuarcy}{%
+\subsubsection{Forecast accuarcy}\label{forecast-accuarcy}}
+
+The accuracy function returns the range of summary measures of the
+forecast accuracy. It take as inputs the vector containing forecasts and
+the one containing the actual values
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(forecast)}
+\FunctionTok{accuracy}\NormalTok{(predict\_testing}\SpecialCharTok{$}\NormalTok{pred, testing)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                   ME      RMSE       MAE       MPE    MAPE     ACF1 Theil's U
+## Test set -0.03664729 0.3423696 0.2977749 -2.954757 11.2963 0.952254  3.893818
+\end{verbatim}
+
+The measures calculated are:
+
+\begin{itemize}
+\item
+  ME: Mean Error
+\item
+  RMSE: Root Mean Squared Error
+\item
+  MAE: Mean Absolute Error
+\item
+  MPE: Mean Percentage Error
+\item
+  MAPE: Mean Absolute Percentage Error
+\item
+  MASE: Mean Absolute Scaled Error
+\item
+  ACF1: Autocorrelation of errors at lag 1.
+\end{itemize}
+
+\emph{The MAPE} is one the most accurate and common forecast accuracy
+error measurement, with our series it is equal to 11.2963\% it is
+between 10\% and 20\% thus our \textbf{forecast is good}
+
+\end{document}

@@ -1,0 +1,291 @@
+---
+title: "Business Forecationg Project"
+author: 'Laabidi Nadine  '
+date: "09/01/2023"
+output:
+  html_document: default
+  pdf_document: default
+---
+## Goal   
+The goal of this project is to build an ARIMA model, with which we can forecast the retail price of Diesel using the series past values.
+
+## The packages used
+
+* TSA: time series analysis, we couldn't upload it so we uploaded the R code of the functions as a source.
+
+* TSstudio: this package provides a set of tools descriptive and predictive analysis of time series data. we used from it the function ts_split in order to split the data into train and test set
+
+* forecast: it provides you with Methods and tools for displaying and analysing univariate time series forecasts including exponen-tial smoothing via state space models and automatic ARIMA modelling. we used from it the boxcox.lambda, the acf, the pacf and the accruracy functions to measure the accuracy of our forecast.
+
+* tseries: Time series analysis and computational finance, we used it for the adf test
+
+
+## Dataset Overview 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+
+rm(list=ls())
+data<-read.csv("project.csv",  sep=",", dec="." , header=T)
+summary(data)
+
+```
+
+the source of our dataset is the __U.S. Energy Information Administration (EIA)__ which is a principal agency of the U.S. Federal Statistical System responsible for collecting, analyzing, and disseminating energy information to promote sound policymaking, efficient markets, and public understanding of energy and its interaction with the economy and the environment.
+
+The dataset we are working on presents __the US Diesel retail prices__ from __May 1994 until May 2020__
+we have 313 observations lying between _0.959 and 4.703_  
+
+## ARIMA model selection
+
+### converting the dataset into a time series 
+
+we use the function ts() to convert the original dataset into a time series. the frequency is equal to 12 because it's a monthly dataset starting from May 1994
+
+```{r}
+data=data[,-1]
+project  <- ts(data, frequency=12, start=c(1994,5))
+project
+
+```
+
+### splitting the dataset into training set and testing set 
+
+the function _ts_split_ is used to Split a Time Series Object into Training and Testing Partitions
+
+```{r}
+library (TSstudio)
+split_project <- ts_split(ts.obj = project, sample.out = 63)
+training <- split_project$train
+testing <- split_project$test
+length(training)
+length(testing)
+```
+The training set incorporates 250 observations equivalent to 80% of the total observation while the testing set includes 63 observations
+equivalent to 20% of the total observations.
+
+#### plotting the data 
+
+```{r}
+
+plot(training,ylab="us diesel retail price ",xlab="date",  col= 'blue', type="l")
+boxplot (training~ cycle(training), xlab="month", ylab="Diesel price")
+
+```
+
+At a first glance we can see that the data exhibits an upward trend with the presence of an outlier at year 2008.
+
+the following boxplot shows that the mean is not constant over time thus it's a clear evidence that the series is __non-stationary__.
+
+### computing lambda for transformation
+
+```{r}
+library(forecast)
+BoxCox.lambda(training,  lower = -2, upper = 2)
+
+```
+
+lambda is close to -0.5, in this case we ought to use the inverse square but it is hard to rescale it when making the forecast so there will be no transformation.  
+
+__NB:__ the BoxCox.ar function didn't work for us so we used the BoxCox.lambda function which takes the time series of class ts as an input and gives a number indicating the Box-Cox transformation parameter ,which is lambda , as an output. 
+
+### plotting the ACF, the PACF
+
+```{r}
+acf(training, lag=50)
+pacf(training, lag=50)
+```
+
+The autocorrelation function plot shows a very slow decay which is typical of a nonstationary time series, meaning that the mean and the varinace depend on time.
+
+the PACF drops off to zero for lags >0 but it is irrelevent since the ACF plot is showing a non-stationary time series. 
+
+let's confirm that !
+
+### stationarity test 
+
+To check for stationarity, we do the __Augmented Dickey Fuller test (ADF Test)__  
+
+H0: the series is non-stationary  
+H1: the series is stationary
+
+```{r}
+library(tseries)
+adf.test(training , alternative=c("stationary", "explosive"))
+```
+the p-value is greater than 5% so we fail to reject H0  
+the series is non-stationary and we need to make the first difference
+
+### 1st difference stationarity test 
+
+```{r}
+library(tseries)
+diff_training<- diff(training)
+adf.test(diff_training, alternative=c("stationary", "explosive"))
+
+```
+the p-value is less than 5% so we reject H0
+we have a stationary time series, now let's examinate the plots ! 
+
+### plotting the series after the first difference 
+
+```{r}
+plot(diff_training,ylab="us diesel retail price ",xlab="date", col="blue", type="o")
+```
+
+As we can see making the first difference helped us stabilise the mean of our time series and thus reduced  the trend although we still have some outliers.
+
+### plotting the ACF, PACF and EACF of the differenced dataset
+
+```{r}
+source("eacf.R")
+acf(diff_training, lag=30)
+pacf(diff_training, lag=30)
+eacf(diff_training)
+```
+accrording to the ACF plot, the process is significant at lag=0
+
+according to the PACF plot, we have two possible values of p which are 0 and 1  
+
+Thus the ACF and PACF give us two candidate models which are ARIMA(1,1,0) and ARIMA(0,1,0)
+
+now for the __EACF__ we look for the corners formed by the x's from the bottom right side moving towards the top left. 
+In our case, it indicates the possibility of an  ARIMA (1,1,1) 
+
+all in all, we have THREE candidate models and we need now to make the estimation to be able to choose the final one.
+
+### Making the estimation & choosing the appropriate model
+
+ we are going to use the likelyhood method as it's the most commonly used technique, Nonetheless there are other methods like the method of moments and the least square estimation we can also use to estimate.
+
+***
+
+- Testing the ARIMA (0,1,0) model
+
+```{r}
+source("arima.R")
+arima(training,order=c(0,1,0) ,method='ML')
+```
+
+The white noise process suggests that the fitted model is  
+
+Y(t)-Y(t-1)= e(t)
+
+The white noise variance estimate is equal to 0.01626 and the aic is equal to  -318.26
+
+***
+
+- Testing the ARIMA (1,1,0) model
+
+```{r}
+source("arima.R") 
+arima(training,order=c(1,1,0) ,method='ML')
+```
+
+The ARIMA(1,1,0) suggests that the fitted model is  
+
+Y(t)-Y(t-1)=0.4900Y(t-1)+e(t)  
+
+the ML phi estimate is equal to 0.4900 which is significantly different from zero
+
+The white noise variance estimate is equal to 0.01238 and the aic is equal to -384.61
+
+***
+
+- Testing the ARIMA (1,1,1) model
+
+```{r}
+source("arima.R") 
+arima(training,order=c(1,1,1), method='ML')
+```
+The ARIMA(1,1,0) suggests that the fitted model is  
+
+Y(t)-Y(t-1)= 0.3338Y(t-1)+ 0.2064(e(t-1))+e(t)
+
+
+the ML phi estimate is equal to 0.3338 and teta is equal to -0.2064 which are different from zero.
+
+The white noise variance estimate is equal to 0.01225 and the aic is equal to -385.2
+
+__THE SELECTED MODEL WILL BE ARIMA(1,1,1)__ it has the smallest aic and significant estimators
+
+## Forecasting
+
+Now we will use the predict function to display the predictions for the last 20% of our dataset and compare it with the actual data (testing set)
+
+```{r}
+testing
+min (testing)
+max (testing)
+
+```
+
+```{r}
+source("predict.TAR.R")
+model=arima(training, order=c(1,1,1), method='ML')
+predict_testing<- predict(model, n.ahead=63)
+round (predict_testing$pred,4)
+min(predict_testing$pred)
+max(predict_testing$pred)
+
+```
+  
+the actual data are within an interval from 1.998 to 3.365 while the predicted data fell within an interval from 2.806508 to 2.823697
+
+now let's check the plot of our series, forecast,limits and actual values!
+
+```{r}
+
+source ("plot.Arima.R")
+plot(model, n.ahead=63, ylab= 'US diesel retail price', col="red", type="b")
+lines(testing, col="blue", type="b")
+
+```
+
+- the red area presents 95% forecast limits
+
+- the blue graph presents the actual values of the series 
+
+- the black line is the forecast. it has this shape because as shown in the table of the predicted values above they are close to each other in the values. it is also the same for the actual values 
+
+
+As we can see the actual values fell within the forecast limits.
+
+The forecast for the fisrt predicted months was perfect because it's a short term forecast it is normal that the accuracy would be higher nontheless it was also good for the rest of the predicted period 
+
+
+### Forecast accuarcy 
+
+The accuracy function returns the range of summary measures of the forecast accuracy. It take as inputs the vector containing forecasts and the one containing the actual values
+
+```{r}
+library(forecast)
+accuracy(predict_testing$pred, testing)
+
+```
+
+The measures calculated are:
+
+- ME: Mean Error
+
+- RMSE: Root Mean Squared Error
+
+- MAE: Mean Absolute Error
+
+- MPE: Mean Percentage Error
+
+- MAPE: Mean Absolute Percentage Error
+
+- MASE: Mean Absolute Scaled Error
+
+- ACF1: Autocorrelation of errors at lag 1.
+
+_The MAPE_ is one the most accurate and common forecast accuracy error measurement, with our series it is equal to 11.2963% it is between 10% and 20% thus our __forecast is good__
+
+
+
+
+
